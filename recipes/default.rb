@@ -17,7 +17,9 @@
 # limitations under the License.
 #
 
-Ohai::Config[:plugin_path] << node['ohai']['plugin_path']
+if !Ohai::Config[:plugin_path].include?(node['ohai']['plugin_path'])
+  Ohai::Config[:plugin_path] << node['ohai']['plugin_path']
+end
 Chef::Log.info("ohai plugins will be at: #{node['ohai']['plugin_path']}")
 
 rd = remote_directory node['ohai']['plugin_path'] do
@@ -31,15 +33,13 @@ end
 
 rd.run_action(:create)
 
-resource = ohai 'custom_plugins' do
-  action :nothing
-end
-
 # only reload ohai if new plugins were dropped off OR
 # node['ohai']['plugin_path'] does not exists in client.rb
 if rd.updated? || 
   !(::IO.read(Chef::Config[:config_file]) =~ /Ohai::Config\[:plugin_path\]\s*<<\s*["']#{node['ohai']['plugin_path']}["']/)
 
-  resource.run_action(:reload)
+  ohai 'custom_plugins' do
+    action :nothing
+  end.run_action(:reload)
 
 end
