@@ -13,3 +13,10 @@ attribute "ohai/plugin_path",
   :type => "string",
   :required => "optional",
   :default => "/etc/chef/ohai_plugins"
+
+attribute "ohai/plugins",
+  :display_name => "Ohai Plugin Sources",
+  :description => "Read plugins from these cookbooks and paths",
+  :type => "hash",
+  :required => "optional",
+  :default => {'ohai' => 'plugins'}
