@@ -27,8 +27,8 @@ node['ohai']['plugins'].each_pair do |source_cookbook, path|
   rd = remote_directory node['ohai']['plugin_path'] do
     cookbook source_cookbook
     source path
-    owner 'root'
-    group 'root'
+    owner node['ohai']['root_user']
+    group node['ohai']['root_group']
     mode '0755'
     recursive true
     purge false
