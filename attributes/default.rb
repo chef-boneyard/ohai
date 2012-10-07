@@ -22,3 +22,13 @@ default["ohai"]["plugin_path"] = "/etc/chef/ohai_plugins"
 
 # The list of plugins and their respective file locations
 default["ohai"]["plugins"] = {'ohai' => 'plugins'}
+
+default["chef_handler"]["root_user"] = "root"
+
+case platform
+when "openbsd","freebsd","mac_os_x","mac_os_x_server"
+  default["chef_handler"]["root_group"] = "wheel"
+else
+  default["chef_handler"]["root_group"] = "root"
+end
+
