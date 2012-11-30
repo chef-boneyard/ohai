@@ -1,3 +1,8 @@
+## v1.1.4:
+
+* [COOK-1128] - readme update, Replace reference to deprecated chef
+  cookbook with one to chef-client
+
 ## v1.1.2:
 
 * [COOK-1424] - prevent plugin_path growth to infinity
