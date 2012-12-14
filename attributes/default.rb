@@ -21,4 +21,4 @@
 default["ohai"]["plugin_path"] = "/etc/chef/ohai_plugins"
 
 # The list of plugins and their respective file locations
-default["ohai"]["plugins"] = {'ohai' => 'plugins'}
+default["ohai"]["plugins"]["ohai"] = "plugins"
