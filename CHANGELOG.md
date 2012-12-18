@@ -1,3 +1,8 @@
+## v1.1.6:
+
+* [COOK-2057] - distribution from another cookbok fails if ohai
+  attributes are loaded after the other cookbook
+
 ## v1.1.4:
 
 * [COOK-1128] - readme update, Replace reference to deprecated chef
