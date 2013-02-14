@@ -1,3 +1,8 @@
+## v1.1.8:
+
+* [COOK-1918] - Ohai cookbook to distribute plugins fails on windows
+* [COOK-2096] - Ohai cookbook sets unix-only default path attribute
+
 ## v1.1.6:
 
 * [COOK-2057] - distribution from another cookbok fails if ohai
