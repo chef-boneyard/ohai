@@ -3,6 +3,11 @@ ohai Cookbook CHANGELOG
 This file is used to list changes made in each version of the ohai cookbook.
 
 
+v1.1.10
+-------
+### Bug
+- **[COOK-3091](https://tickets.opscode.com/browse/COOK-3091)** - Fix checking `Chef::Config[:config_file]`
+
 v1.1.8
 ------
 - [COOK-1918] - Ohai cookbook to distribute plugins fails on windows
