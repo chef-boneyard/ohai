@@ -47,7 +47,7 @@ resource = ohai 'custom_plugins' do
   action :nothing
 end
 
-# Reload ohai if the client's plugin_path did not contain 
+# Reload ohai if the client's plugin_path did not contain
 # node['ohai']['plugin_path'], or new plugins were loaded
 if reload_ohai
   resource.run_action(:reload)
