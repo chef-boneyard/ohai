@@ -26,6 +26,11 @@ unless Ohai::Config[:plugin_path].include?(node['ohai']['plugin_path'])
 end
 Chef::Log.info("ohai plugins will be at: #{node['ohai']['plugin_path']}")
 
+unless Ohai::Config[:hints_path].include?(node['ohai']['hints_path'])
+  Ohai::Config[:hints_path] = [node['ohai']['hints_path'], Ohai::Config[:hints_path]].flatten.compact
+end
+Chef::Log.info("ohai hints will be at: #{node['ohai']['hints_path']}")
+
 # This is done during the compile phase so new plugins can be used in
 # resources later in the run.
 node['ohai']['plugins'].each_pair do |source_cookbook, path|
@@ -41,6 +46,26 @@ node['ohai']['plugins'].each_pair do |source_cookbook, path|
 
   rd.run_action(:create)
   reload_ohai ||= rd.updated?
+end
+
+hints_dir = directory node['ohai']['hints_path'] do
+  action :create
+  recursive true
+  mode '0755' unless platform_family?('windows')
+end
+hints_dir.run_action(:create)
+
+
+node['ohai']['hints'].each_pair do |hint_name, data|
+
+  hint_file = file ::File.join(node['ohai']['hints_path'], "#{hint_name}.json") do
+    content JSON.pretty_generate(data)
+    mode '0644' unless platform_family?('windows')
+    action :nothing
+  end
+
+  hint_file.run_action(:create)
+  reload_ohai ||= hint_file.updated?
 end
 
 resource = ohai 'custom_plugins' do
