@@ -26,6 +26,7 @@ unless Ohai::Config[:plugin_path].include?(node['ohai']['plugin_path'])
 end
 Chef::Log.info("ohai plugins will be at: #{node['ohai']['plugin_path']}")
 
+# Add hints_path from node attributes if missing.
 unless Ohai::Config[:hints_path].include?(node['ohai']['hints_path'])
   Ohai::Config[:hints_path] = [node['ohai']['hints_path'], Ohai::Config[:hints_path]].flatten.compact
 end
@@ -41,19 +42,15 @@ node['ohai']['plugins'].each_pair do |source_cookbook, path|
     mode '0755' unless platform_family?('windows')
     recursive true
     purge false
-    action :nothing
-  end
+  end.run_action(:create)
 
-  rd.run_action(:create)
   reload_ohai ||= rd.updated?
 end
 
-hints_dir = directory node['ohai']['hints_path'] do
-  action :create
+directory node['ohai']['hints_path'] do
   recursive true
   mode '0755' unless platform_family?('windows')
-end
-hints_dir.run_action(:create)
+end.run_action(:create)
 
 
 node['ohai']['hints'].each_pair do |hint_name, data|
@@ -61,10 +58,8 @@ node['ohai']['hints'].each_pair do |hint_name, data|
   hint_file = file ::File.join(node['ohai']['hints_path'], "#{hint_name}.json") do
     content JSON.pretty_generate(data)
     mode '0644' unless platform_family?('windows')
-    action :nothing
-  end
+  end.run_action(:create)
 
-  hint_file.run_action(:create)
   reload_ohai ||= hint_file.updated?
 end
 
@@ -73,7 +68,8 @@ resource = ohai 'custom_plugins' do
 end
 
 # Reload ohai if the client's plugin_path did not contain
-# node['ohai']['plugin_path'], or new plugins were loaded
+# node['ohai']['plugin_path'], or new plugins were loaded,
+# or new hint were loaded.
 if reload_ohai
   resource.run_action(:reload)
 end
