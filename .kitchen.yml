@@ -15,7 +15,9 @@ platforms:
 
 suites:
 - name: default
-  run_list: ["recipe[ohai]", "recipe[ohai::node_dump]"]
+  run_list:
+    - "recipe[ohai]"
+    - "recipe[ohai_test::node_dump]"
   attributes:
     ohai:
       hints:
