@@ -37,12 +37,15 @@ Chef::Log.info("ohai hints will be at: #{node['ohai']['hints_path']}")
 node['ohai']['plugins'].each_pair do |source_cookbook, path|
 
   rd = remote_directory node['ohai']['plugin_path'] do
+    action :nothing
     cookbook source_cookbook
     source path
     mode '0755' unless platform_family?('windows')
     recursive true
     purge false
-  end.run_action(:create)
+  end
+
+  rd.run_action(:create)
 
   reload_ohai ||= rd.updated?
 end
@@ -56,9 +59,12 @@ end.run_action(:create)
 node['ohai']['hints'].each_pair do |hint_name, data|
 
   hint_file = file ::File.join(node['ohai']['hints_path'], "#{hint_name}.json") do
+    action :nothing
     content JSON.pretty_generate(data)
     mode '0644' unless platform_family?('windows')
-  end.run_action(:create)
+  end
+
+  hint_file.run_action(:create)
 
   reload_ohai ||= hint_file.updated?
 end
