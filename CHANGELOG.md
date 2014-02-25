@@ -3,6 +3,11 @@ ohai Cookbook CHANGELOG
 This file is used to list changes made in each version of the ohai cookbook.
 
 
+v2.0.0 (2014-02-25)
+-------------------
+'[COOK-3865] - create lwrp ohai_hint'
+
+
 v1.1.12
 -------
 - Dummy release due to a Community Site upload failure
