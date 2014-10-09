@@ -40,6 +40,12 @@ Create hints file.  You can find usage examples at `test/cookbooks/ohai_test/rec
   -  `hint_name` - The name of hints file and key. Should be string, default is name of resource.
   -  `content` - Values of hints. It will be used as automatic attributes. Should be Hash, default is empty Hash class.
 
+#### ChefSpec Matchers
+
+You can check for the creation or deletion of ohai hints with chefspec using these custom matches:
+
+ - create_ohai_hint
+ - delete_ohai_hint
 
 Example
 -------
