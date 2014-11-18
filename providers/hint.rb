@@ -1,4 +1,5 @@
-def why_run_supported?
+def whyrun_supported?
+  # rely on the whyrun support of the resources
   true
 end
 
@@ -9,27 +10,20 @@ end
 use_inline_resources
 
 action :create do
-  if @current_resource.content != new_resource.content
-    directory node[:ohai][:hints_path] do
-      action :create
-      recursive true
-    end
+  updated = false
 
-    file build_ohai_hint_path do
-      action :create
-      content JSON.pretty_generate(new_resource.content)
-    end
-  end
-end
-
-
-def load_current_resource
-  @current_resource = Chef::Resource::OhaiHint.new(new_resource.name)
-  if ::File.exist?(build_ohai_hint_path)
-    @current_resource.content(JSON.parse(::File.read(build_ohai_hint_path)))
-  else
-    @current_resource.content(nil)
+  r = directory node[:ohai][:hints_path] do
+    action :create
+    recursive true
   end
 
-  @current_resource
+  updated = r.updated_by_last_action?
+
+  r = file build_ohai_hint_path do
+    action :create
+    content JSON.pretty_generate(new_resource.content)
+  end
+
+  updated = updated or r.updated_by_last_action?
+  new_resource.updated_by_last_action(updated)
 end
