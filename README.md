@@ -21,7 +21,7 @@ The execution of the custom plugins occurs within the recipe during the compile 
 
 For information on how to write custom plugins for Ohai, please see the Chef wiki pages.
 
-http://wiki.opscode.com/display/chef/Writing+Ohai+Plugins
+http://wiki.chef.io/display/chef/Writing+Ohai+Plugins
 
 *PLEASE NOTE* - This recipe reloads the Ohai plugins a 2nd time during the Chef run if:
 
@@ -48,11 +48,11 @@ For an example implementation, inspect the ohai_plugin.rb recipe in the nginx co
 
 License & Authors
 -----------------
-- Author:: Joshua Timberman (<joshua@opscode.com>)
-- Author:: Seth Chisamore (<schisamo@opscode.com>)
+- Author:: Joshua Timberman (<joshua@chef.io>)
+- Author:: Seth Chisamore (<schisamo@chef.io>)
 
 ```text
-Copyright:: 2010-2011, Opscode, Inc
+Copyright:: 2010-2011, Chef Software, Inc
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.

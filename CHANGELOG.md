@@ -7,7 +7,7 @@ v2.0.1 (2014-06-07)
 -------------------
 * [COOK-4683] Remove warnings about reopening resource
 
-Please note, this changes the name of a remote_directory resource. It is not expected that anyone would be explicitly notifying this resource but, please review [PR #16](https://github.com/opscode-cookbooks/ohai/pull/16/files) for more info.
+Please note, this changes the name of a remote_directory resource. It is not expected that anyone would be explicitly notifying this resource but, please review [PR #16](https://github.com/chef-cookbooks/ohai/pull/16/files) for more info.
 
 
 v2.0.0 (2014-02-25)
@@ -22,7 +22,7 @@ v1.1.12
 v1.1.10
 -------
 ### Bug
-- **[COOK-3091](https://tickets.opscode.com/browse/COOK-3091)** - Fix checking `Chef::Config[:config_file]`
+- **[COOK-3091](https://tickets.chef.io/browse/COOK-3091)** - Fix checking `Chef::Config[:config_file]`
 
 v1.1.8
 ------
