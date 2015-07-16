@@ -1,4 +1,4 @@
-def why_run_supported?
+def whyrun_supported?
   true
 end
 
