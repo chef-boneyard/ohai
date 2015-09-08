@@ -1,8 +1,0 @@
-#!/usr/bin/env ruby
-#^syntax detection
-
-site 'http://community.chef.io/api/v1'
-
-cookbook 'ohai', :path => '../'
-cookbook 'ohai_test', :path => './test/cookbooks/ohai_test'
-
