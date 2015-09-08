@@ -1,5 +1,8 @@
 ohai Cookbook
 =============
+[![Build Status](https://travis-ci.org/chef-cookbooks/ohai.svg?branch=master)](http://travis-ci.org/chef-cookbooks/ohai)
+[![Cookbook Version](https://img.shields.io/cookbook/v/ohai.svg)](https://supermarket.chef.io/cookbooks/ohai)
+
 Creates a configured plugin path for distributing custom Ohai plugins, and reloads them via Ohai within the context of a Chef Client run during the compile phase (if needed).
 
 
@@ -52,7 +55,7 @@ License & Authors
 - Author:: Seth Chisamore (<schisamo@chef.io>)
 
 ```text
-Copyright:: 2010-2011, Chef Software, Inc
+Copyright:: 2011-2015 Chef Software, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
