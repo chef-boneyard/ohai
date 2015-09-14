@@ -6,6 +6,19 @@ ohai Cookbook
 Creates a configured plugin path for distributing custom Ohai plugins, and reloads them via Ohai within the context of a Chef Client run during the compile phase (if needed).
 
 
+Requirements
+------------
+#### Platforms
+- Debian/Ubuntu
+- RHEL/CentOS/Scientific/Amazon/Oracle
+- Windows
+
+#### Chef
+- Chef 11+
+
+#### Cookbooks
+- none
+
 Attributes
 ----------
 - `node['ohai']['plugin_path']` - location to drop off plugins directory, default is `/etc/chef/ohai_plugins`. This is not FHS-compliant, an FHS location would be something like `/var/lib/ohai/plugins`, or `/var/lib/chef/ohai_plugins` or similar.
@@ -57,12 +70,11 @@ For an example implementation, inspect the ohai_plugin.rb recipe in the nginx co
 
 License & Authors
 -----------------
-- Author:: Joshua Timberman (<joshua@chef.io>)
-- Author:: Seth Chisamore (<schisamo@chef.io>)
 
-```text
-Copyright:: 2011-2015 Chef Software, Inc.
+**Author:** Cookbook Engineering Team (<cookbooks@chef.io>)
 
+**Copyright:** 2011-2015, Chef Software, Inc.
+```
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
