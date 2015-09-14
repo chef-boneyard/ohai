@@ -6,7 +6,7 @@ def build_ohai_hint_path
   ::File.join(node[:ohai][:hints_path], "#{new_resource.name}.json")
 end
 
-use_inline_resources
+use_inline_resources if defined?(use_inline_resources)
 
 action :create do
   if @current_resource.content != new_resource.content
