@@ -2,6 +2,26 @@ ohai Cookbook CHANGELOG
 =======================
 This file is used to list changes made in each version of the ohai cookbook.
 
+v2.0.3 (2015-10-21)
+-------------------
+* Validate the hints before loading them to avoid failures
+* Added supported platforms to the metadata
+* Updated .gitignore file
+* Updated Test Kitchen config for the latest platforms
+* Added Chef standard Rubocop config
+* Added Travis CI testing
+* Added Berksfile
+* Updated contributing and testing docs
+* Added maintainers.md and maintainers.toml files
+* Added Travis and cookbook version badges to the readme
+* Expanded the requirements section in the readme and clarify the minimum supported Chef release is 11
+* Updated Opscode -> Chef Software
+* Added a Rakefile for simplified testing
+* Added a Chefignore file
+* Resolved Rubocop warnings
+* Added source_url and issues_url to the metadata
+* Added Chefspec matchers
+* Added basic convergence Chefspec test
 
 v2.0.1 (2014-06-07)
 -------------------
@@ -9,11 +29,9 @@ v2.0.1 (2014-06-07)
 
 Please note, this changes the name of a remote_directory resource. It is not expected that anyone would be explicitly notifying this resource but, please review [PR #16](https://github.com/chef-cookbooks/ohai/pull/16/files) for more info.
 
-
 v2.0.0 (2014-02-25)
 -------------------
 '[COOK-3865] - create lwrp ohai_hint'
-
 
 v1.1.12
 -------
