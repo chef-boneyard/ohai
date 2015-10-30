@@ -2,6 +2,10 @@ ohai Cookbook CHANGELOG
 =======================
 This file is used to list changes made in each version of the ohai cookbook.
 
+v2.0.4 (2015-10-30)
+-------------------
+* Resolved deprecation warnings with the Chefspec matchers
+
 v2.0.3 (2015-10-21)
 -------------------
 * Validate the hints before loading them to avoid failures
