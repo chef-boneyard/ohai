@@ -15,6 +15,8 @@ platforms:
     run_list: apt::default
   - name: debian-8.2
     run_list: apt::default
+  - name: freebsd-9.3
+  - name: freebsd-10.2
   - name: fedora-22
   - name: fedora-23
   - name: ubuntu-12.04
