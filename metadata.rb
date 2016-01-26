@@ -14,17 +14,3 @@ issues_url 'https://github.com/chef-cookbooks/ohai/issues' if respond_to?(:issue
 %w(ubuntu debian centos redhat amazon scientific fedora oracle).each do |os|
   supports os
 end
-
-attribute 'ohai/plugin_path',
-  display_name: 'Ohai Plugin Path',
-  description: 'Distribute plugins to this path.',
-  type: 'string',
-  required: 'optional',
-  default: '/etc/chef/ohai_plugins'
-
-attribute 'ohai/plugins',
-  display_name: 'Ohai Plugin Sources',
-  description: 'Read plugins from these cookbooks and paths',
-  type: 'hash',
-  required: 'optional',
-  default: { 'ohai' => 'plugins' }
