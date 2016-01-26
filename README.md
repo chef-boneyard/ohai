@@ -1,5 +1,5 @@
 # ohai Cookbook
-[![Build Status](https://travis-ci.org/chef-cookbooks/ohai.svg?branch=master)](http://travis-ci.org/chef-cookbooks/ohai) [![Cookbook Version](https://img.shields.io/cookbook/v/ohai.svg)](https://supermarket.chef.io/cookbooks/ohai)
+[![Build Status](https://travis-ci.org/chef-cookbooks/ohai.svg?branch=master)](https://travis-ci.org/chef-cookbooks/ohai) [![Cookbook Version](https://img.shields.io/cookbook/v/ohai.svg)](https://supermarket.chef.io/cookbooks/ohai)
 
 Creates a configured plugin path for distributing custom Ohai plugins, and reloads them via Ohai within the context of a Chef Client run during the compile phase (if needed).
 
