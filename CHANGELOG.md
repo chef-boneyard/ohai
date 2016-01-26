@@ -1,6 +1,13 @@
 # ohai Cookbook CHANGELOG
 This file is used to list changes made in each version of the ohai cookbook.
 
+## v2.1.0 (2016-01-26)
+- Properly handle creating ohai hints without specifying the content. Previously if the content wasn't specified a deprecation notice would be thrown and the file would not be created
+- Simplified the test suite and added inspec tests to ensure hints are created, especially if the content is not specified
+- Added FreeBSD and Windows as supported platform in the metadata and add them to the Test Kitchen config
+- Add Test Kitchen integration tests to Travis CI
+- Updated testing Gems to the latest releases in the Gemfile
+
 ## v2.0.4 (2015-10-30)
 - Resolved deprecation warnings with the Chefspec matchers
 

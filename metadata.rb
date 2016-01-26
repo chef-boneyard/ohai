@@ -4,7 +4,7 @@ maintainer_email 'cookbooks@chef.io'
 license 'Apache 2.0'
 description 'Distributes a directory of custom ohai plugins'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version '2.0.4'
+version '2.1.0'
 
 recipe 'ohai::default', 'Distributes a directory of custom ohai plugins'
 
