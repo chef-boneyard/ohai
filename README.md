@@ -7,6 +7,7 @@ Creates a configured plugin path for distributing custom Ohai plugins, and reloa
 ### Platforms
 - Debian/Ubuntu
 - RHEL/CentOS/Scientific/Amazon/Oracle
+- FreeBSD
 - Windows
 
 ### Chef
