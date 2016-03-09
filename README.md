@@ -29,9 +29,9 @@ Put the recipe `ohai` at the start of the node's run list to make sure that cust
 
 The execution of the custom plugins occurs within the recipe during the compile phase, so you can write new plugins and use the data they return in your Chef recipes.
 
-For information on how to write custom plugins for Ohai, please see the Chef wiki pages.
+For information on how to write custom plugins for Ohai, please see the Chef Docs page
 
-[http://wiki.chef.io/display/chef/Writing+Ohai+Plugins](http://wiki.chef.io/display/chef/Writing+Ohai+Plugins)
+[https://docs.chef.io/ohai_custom.html](https://docs.chef.io/ohai_custom.html)
 
 _PLEASE NOTE_ - This recipe reloads the Ohai plugins a 2nd time during the Chef run if:
 - The "`Ohai::Config[:plugin_path]`" config setting has _NOT_ been properly set in the Chef config file
