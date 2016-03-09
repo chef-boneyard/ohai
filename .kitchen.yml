@@ -10,7 +10,7 @@ verifier:
 platforms:
   - name: centos-5.11
   - name: centos-6.7
-  - name: centos-7.1
+  - name: centos-7.2
   - name: debian-7.9
     run_list: apt::default
   - name: debian-8.2
@@ -18,7 +18,9 @@ platforms:
   - name: freebsd-9.3
   - name: freebsd-10.2
   - name: fedora-22
+    run_list: yum::dnf_yum_compat
   - name: fedora-23
+    run_list: yum::dnf_yum_compat
   - name: ubuntu-12.04
     run_list: apt::default
   - name: ubuntu-14.04
