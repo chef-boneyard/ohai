@@ -17,7 +17,7 @@ Creates a configured plugin path for distributing custom Ohai plugins, and reloa
 - none
 
 ## Attributes
-- `node['ohai']['plugin_path']` - location to drop off plugins directory, default is `/etc/chef/ohai_plugins`. This is not FHS-compliant, an FHS location would be something like `/var/lib/ohai/plugins`, or `/var/lib/chef/ohai_plugins` or similar.
+- `node['ohai']['plugin_path']` - location to drop off plugins directory, default is `/etc/chef/ohai_plugins`. Note: This is not Filesystem Hierarchy Standard(FHS)-compliant path, a FHS compliant path would be something like `/var/lib/ohai/plugins`, or `/var/lib/chef/ohai_plugins` or similar.
 
     Neither an FHS location or the default value of this attribute are in the default Ohai plugin path. Set the Ohai plugin path with the config setting "`Ohai::Config[:plugin_path]`" in the Chef config file (the `chef-client::config` recipe does this automatically for you!). The attribute is not set to the default plugin path that Ohai ships with because we don't want to risk destroying existing essential plugins for Ohai.
 
