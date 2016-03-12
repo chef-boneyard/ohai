@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/chef-cookbooks/ohai.svg?branch=master)](https://travis-ci.org/chef-cookbooks/ohai) [![Cookbook Version](https://img.shields.io/cookbook/v/ohai.svg)](https://supermarket.chef.io/cookbooks/ohai)
 
-Creates a configured plugin path for distributing custom Ohai plugins, and reloads them via Ohai within the context of a Chef Client run during the compile phase (if needed).
+Contains custom resources for adding Ohai hints and installing custom Ohai plugins. Handles path creation as well as the reloading of Ohai so that new data will be available during the same run.
 
 ## Requirements
 
@@ -15,45 +15,47 @@ Creates a configured plugin path for distributing custom Ohai plugins, and reloa
 
 ### Chef
 
-- Chef 11+
+- Chef 12+
 
 ### Cookbooks
 
 - none
 
-## Attributes
-- `node['ohai']['plugin_path']` - location to drop off plugins directory, default is `/etc/chef/ohai_plugins`. Note: This is not Filesystem Hierarchy Standard(FHS)-compliant path, a FHS compliant path would be something like `/var/lib/ohai/plugins`, or `/var/lib/chef/ohai_plugins` or similar.
-
-    Neither an FHS location or the default value of this attribute are in the default Ohai plugin path. Set the Ohai plugin path with the config setting "`Ohai::Config[:plugin_path]`" in the Chef config file (the `chef-client::config` recipe does this automatically for you!). The attribute is not set to the default plugin path that Ohai ships with because we don't want to risk destroying existing essential plugins for Ohai.
-
-- `node['ohai']['plugins']` - sources of plugins, defaults to the `files/default/plugins` directory of this cookbook. You can add additional cookbooks by adding the name of the cookbook as a key and the path of the files directory as the value. You have to make sure that you don't have any file conflicts between multiple cookbooks. The last one to write wins.
-- `node['ohai']['hints_path']` - location to drop off hints directory. This defaults to the path defined by Ohai, which is `/etc/chef/ohai/hints` on Linux and `C:/chef/ohai/hints` on Windows.
-
-## Usage
-
-Put the recipe `ohai` at the start of the node's run list to make sure that custom plugins are loaded early on in the Chef run and data is available for later recipes.
-
-The execution of the custom plugins occurs within the recipe during the compile phase, so you can write new plugins and use the data they return in your Chef recipes.
-
-For information on how to write custom plugins for Ohai, please see the Chef Docs page
-
-<https://docs.chef.io/ohai_custom.html>
-
-_PLEASE NOTE_ - This recipe reloads the Ohai plugins a 2nd time during the Chef run if:
-
-- The "`Ohai::Config[:plugin_path]`" config setting has _NOT_ been properly set in the Chef config file
-- The "`Ohai::Config[:plugin_path]`" config setting has been properly set in the Chef config file and there are updated plugins dropped off at "`node['ohai']['plugin_path']`".
-
-## LWRP
+## Custom Resources (Providers)
 
 ### `ohai_hint`
 
-Create hints file.  You can find usage examples at `test/cookbooks/ohai_test/recipes/*.rb`.
+Creates Ohai hint files, which are consumed by Ohai plugins in order to determine if they should run or not.
 
 #### Resource Attributes
 
 - `hint_name` - The name of hints file and key. Should be string, default is name of resource.
-- `content` - Values of hints. It will be used as automatic attributes. Should be Hash, default is empty Hash class.
+- `content` - Values of hints. It will be used as automatic attributes. Should be Hash, default is empty Hash
+- `hint path` - The path to your hints file, default is first directory defined in `Ohai::Config[:hints_path]`
+
+#### Examples
+
+Hint file installed to the default directory:
+
+```ruby
+ohai_hint 'ec2'
+```
+
+Hint file installed at compile time:
+
+```ruby
+ohai_hint 'ec2' do
+  action :nothing
+end.run_action(:create)
+```
+
+Hint file installed with content:
+
+```ruby
+ohai_hint 'raid_present' do
+  content Hash[:a, 'test_content']
+end
+```
 
 #### ChefSpec Matchers
 
@@ -62,9 +64,38 @@ You can check for the creation or deletion of ohai hints with chefspec using the
 - create_ohai_hint
 - delete_ohai_hint
 
-## Example
+### `ohai_plugin`
 
-For an example implementation, inspect the ohai_plugin.rb recipe in the nginx community cookbook.
+Installs custom Ohai plugins.
+
+#### Resource Attributes
+
+- `plugin_name` - The name to give the plugin on the filesystem. Should be string, default is name of resource.
+- `plugin path` - The path to your custom plugin directory. Defaults to a directory named 'ohai_plugins' in the Chef config dir
+
+#### examples
+
+Simple Ohai plugin installation:
+
+```ruby
+ohai_plugin 'my_custom_plugin'
+```
+
+Installation where the resource doesn't match the filename and you install to a custom plugins dir:
+
+```ruby
+ohai_plugin 'My Ohai Plugin' do
+  name 'my_custom_plugin'
+  custom_plugin_dir '/my/custom/path/'
+end
+```
+
+#### ChefSpec Matchers
+
+You can check for the creation or deletion of ohai plugins with chefspec using these custom matches:
+
+- create_ohai_plugin
+- delete_ohai_plugin
 
 ## License & Authors
 
