@@ -1,7 +1,7 @@
 # encoding: utf-8
 
 if defined?(ChefSpec)
-  ChefSpec.define_runner_method(:ohai_hint)
+  ChefSpec.define_matcher :ohai_hint
 
   def create_ohai_hint(resource)
     ChefSpec::Matchers::ResourceMatcher.new(:ohai_hint, :create, resource)
