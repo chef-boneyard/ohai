@@ -2,6 +2,10 @@
 
 This file is used to list changes made in each version of the ohai cookbook.
 
+## v3.0.1 (2016-03-14)
+
+- Fixed the Chefspec matchers
+
 ## v3.0.0 (2016-03-14)
 
 - Change the default value for `node['ohai']['hints_path']` to use the Ohai config value. This should be the same value in most use cases, but if a custom path is specified in the chef client config this value will get used automatically by the cookbook.
