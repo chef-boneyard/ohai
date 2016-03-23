@@ -20,8 +20,8 @@
 reload_ohai = false
 # Add plugin_path from node attributes if missing, and ensure a reload of
 # ohai in that case
-unless Ohai::Config[:plugin_path].include?(node['ohai']['plugin_path'])
-  Ohai::Config[:plugin_path] = [node['ohai']['plugin_path'], Ohai::Config[:plugin_path]].flatten.compact
+unless Ohai.config[:plugin_path].include?(node['ohai']['plugin_path'])
+  Ohai.config[:plugin_path] = [node['ohai']['plugin_path'], Ohai.config[:plugin_path]].flatten.compact
   reload_ohai ||= true
 end
 Chef::Log.info("ohai plugins will be at: #{node['ohai']['plugin_path']}")
