@@ -27,4 +27,4 @@ default['ohai']['plugin_path'] = case node['platform_family']
 
 # The list of plugins and their respective file locations
 default['ohai']['plugins']['ohai'] = 'plugins'
-default['ohai']['hints_path'] = Ohai::Config[:hints_path].first
+default['ohai']['hints_path'] = Ohai.config[:hints_path].first

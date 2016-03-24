@@ -24,7 +24,7 @@ Creates a configured plugin path for distributing custom Ohai plugins, and reloa
 ## Attributes
 - `node['ohai']['plugin_path']` - location to drop off plugins directory, default is `/etc/chef/ohai_plugins`. Note: This is not Filesystem Hierarchy Standard(FHS)-compliant path, a FHS compliant path would be something like `/var/lib/ohai/plugins`, or `/var/lib/chef/ohai_plugins` or similar.
 
-    Neither an FHS location or the default value of this attribute are in the default Ohai plugin path. Set the Ohai plugin path with the config setting "`Ohai::Config[:plugin_path]`" in the Chef config file (the `chef-client::config` recipe does this automatically for you!). The attribute is not set to the default plugin path that Ohai ships with because we don't want to risk destroying existing essential plugins for Ohai.
+    Neither an FHS location or the default value of this attribute are in the default Ohai plugin path. Set the Ohai plugin path with the config setting "`ohai.plugin_path`" in the Chef config file (the `chef-client::config` recipe does this automatically for you!). The attribute is not set to the default plugin path that Ohai ships with because we don't want to risk destroying existing essential plugins for Ohai.
 
 - `node['ohai']['plugins']` - sources of plugins, defaults to the `files/default/plugins` directory of this cookbook. You can add additional cookbooks by adding the name of the cookbook as a key and the path of the files directory as the value. You have to make sure that you don't have any file conflicts between multiple cookbooks. The last one to write wins.
 - `node['ohai']['hints_path']` - location to drop off hints directory. This defaults to the path defined by Ohai, which is `/etc/chef/ohai/hints` on Linux and `C:/chef/ohai/hints` on Windows.
@@ -41,8 +41,8 @@ For information on how to write custom plugins for Ohai, please see the Chef Doc
 
 _PLEASE NOTE_ - This recipe reloads the Ohai plugins a 2nd time during the Chef run if:
 
-- The "`Ohai::Config[:plugin_path]`" config setting has _NOT_ been properly set in the Chef config file
-- The "`Ohai::Config[:plugin_path]`" config setting has been properly set in the Chef config file and there are updated plugins dropped off at "`node['ohai']['plugin_path']`".
+- The "`ohai.plugin_path`" config setting has _NOT_ been properly set in the Chef config file
+- The "`ohai.plugin_path`" config setting has been properly set in the Chef config file and there are updated plugins dropped off at "`node['ohai']['plugin_path']`".
 
 ## LWRP
 
