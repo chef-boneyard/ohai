@@ -8,7 +8,7 @@ version '3.0.1'
 
 recipe 'ohai::default', 'Distributes a directory of custom ohai plugins'
 
-%w(ubuntu debian centos redhat amazon scientific fedora oracle freebsd windows).each do |os|
+%w(ubuntu debian centos redhat amazon scientific fedora oracle freebsd windows zlinux).each do |os|
   supports os
 end
 
