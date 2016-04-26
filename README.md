@@ -19,7 +19,7 @@ Contains custom resources for adding Ohai hints and installing custom Ohai plugi
 
 ### Cookbooks
 
-- none
+- compat_resource
 
 ## Custom Resources (Providers)
 

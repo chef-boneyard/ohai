@@ -10,5 +10,7 @@ version '2.1.0'
   supports os
 end
 
+depends 'compat_resource'
+
 source_url 'https://github.com/chef-cookbooks/ohai'
 issues_url 'https://github.com/chef-cookbooks/ohai/issues'

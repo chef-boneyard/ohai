@@ -1,7 +1,8 @@
 property :hint_name, kind_of: String, name_attribute: true
 property :content, kind_of: Hash
+property :compile_time, [true, false], default: true
 
-action_class.class_eval do
+action_class do
   def ohai_hint_path
     ::File.join(::Ohai::Config[:hints_path].first, name)
   end
@@ -20,10 +21,6 @@ action_class.class_eval do
   end
 end
 
-load_current_value do
-  content file_content(ohai_hint_path) if ::File.exist?(ohai_hint_path)
-end
-
 action :create do
   directory ::Ohai::Config[:hints_path].first do
     action :create
@@ -33,5 +30,14 @@ action :create do
   file ohai_hint_path do
     action :create
     content build_content
+  end
+end
+
+# this resource forces itself to run at compile_time
+def after_created
+  if compile_time
+    Array(action).each do |action|
+      self.run_action(action)
+    end
   end
 end
