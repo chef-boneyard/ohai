@@ -31,7 +31,7 @@ Creates Ohai hint files, which are consumed by Ohai plugins in order to determin
 
 - `hint_name` - The name of hints file and key. Should be string, default is name of resource.
 - `content` - Values of hints. It will be used as automatic attributes. Should be Hash, default is empty Hash
-- `hint path` - The path to your hints file, default is first directory defined in `Ohai::Config[:hints_path]`
+- `compile_time` - Should the resource run at compile time. This defaults to true
 
 #### Examples
 
@@ -71,7 +71,9 @@ Installs custom Ohai plugins.
 #### Resource Attributes
 
 - `plugin_name` - The name to give the plugin on the filesystem. Should be string, default is name of resource.
-- `plugin path` - The path to your custom plugin directory. Defaults to a directory named 'ohai_plugins' in the Chef config dir
+- `path` - The path to your custom plugin directory. Defaults to a directory named 'ohai_plugins' in the Chef config dir
+- `source_file` - The source file for the plugin in your cookbook if not NAME.rb
+- `compile_time` - Should the resource run at compile time. This defaults to true
 
 #### examples
 
