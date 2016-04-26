@@ -37,7 +37,7 @@ end
 def after_created
   if compile_time
     Array(action).each do |action|
-      self.run_action(action)
+      run_action(action)
     end
   end
 end
