@@ -45,6 +45,14 @@ path cannot be determined")
     ohai_plugin_dir.include?(desired_dir)
   end
 
+  def add_to_plugin_path(path)
+    if node['chef_packages']['ohai']['version'].to_f <= 8.6
+      ::Ohai::Config['plugin_path'] << path
+    else
+      ::Ohai::Config.ohai['plugin_path'] << path
+    end
+  end
+
   # we need to warn the user that unless the path for this plugin is in Ohai's
   # plugin path already we're going to have to reload Ohai on every Chef run.
   # Ideally in future versions of Ohai /etc/chef/ohai/plugins is in the path.
@@ -57,11 +65,6 @@ plugin_path. See 'Ohai Settings' at https://docs.chef.io/config_rb_client.html")
 end
 
 action :create do
-  reload_required = !in_plugin_path?(desired_plugin_path)
-
-  # throw a warning unless the path of our new plugin is in Ohai's plugin path
-  plugin_path_warning if reload_required
-
   # why create_if_missing you ask?
   # no one can agree on perms and this allows them to manage the perms elsewhere
   directory desired_plugin_path do
@@ -78,8 +81,18 @@ action :create do
     notifies :reload, "ohai[#{new_resource.plugin_name}]", :immediately
   end
 
+  # Add the plugin path to the ohai plugin path if need be and warn
+  # the user that this is going to result in a reload every run
+  unless in_plugin_path?(desired_plugin_path)
+    plugin_path_warning
+    Chef::Log.warn("Adding #{desired_plugin_path} to the Ohai plugin path for this chef-client run only")
+    add_to_plugin_path(desired_plugin_path)
+    reload_required = true
+  end
+
   ohai new_resource.plugin_name do
     action :nothing
+    action :reload if reload_required
   end
 end
 
