@@ -4,13 +4,15 @@ property :compile_time, [true, false], default: true
 
 action_class do
   def ohai_hint_path
-    ::File.join(::Ohai::Config[:hints_path].first, name)
+    path = ::File.join(::Ohai::Config[:hints_path].first, new_resource.hint_name)
+    path << '.json' unless path.end_with?('.json')
+    path
   end
 
   def build_content
     # passing nil to file produces deprecation warnings so pass an empty string
-    return nil if content.nil? || content.empty?
-    JSON.pretty_generate(content)
+    return nil if new_resource.content.nil? || new_resource.content.empty?
+    JSON.pretty_generate(new_resource.content)
   end
 
   def file_content(path)
