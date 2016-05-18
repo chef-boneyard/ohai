@@ -41,12 +41,12 @@ Hint file installed to the default directory:
 ohai_hint 'ec2'
 ```
 
-Hint file installed at compile time:
+Hint file not installed at compile time:
 
 ```ruby
 ohai_hint 'ec2' do
-  action :nothing
-end.run_action(:create)
+  compile_time false
+end
 ```
 
 Hint file installed with content:
@@ -88,7 +88,7 @@ Installation where the resource doesn't match the filename and you install to a 
 ```ruby
 ohai_plugin 'My Ohai Plugin' do
   name 'my_custom_plugin'
-  custom_plugin_dir '/my/custom/path/'
+  path '/my/custom/path/'
 end
 ```
 
