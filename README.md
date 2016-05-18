@@ -23,16 +23,7 @@ Contains custom resources for adding Ohai hints and installing custom Ohai plugi
 
 ## Custom Resources (Providers)
 
-<<<<<<< HEAD
-    Neither an FHS location or the default value of this attribute are in the default Ohai plugin path. Set the Ohai plugin path with the config setting "`ohai.plugin_path`" in the Chef config file (the `chef-client::config` recipe does this automatically for you!). The attribute is not set to the default plugin path that Ohai ships with because we don't want to risk destroying existing essential plugins for Ohai.
-
-- `node['ohai']['plugins']` - sources of plugins, defaults to the `files/default/plugins` directory of this cookbook. You can add additional cookbooks by adding the name of the cookbook as a key and the path of the files directory as the value. You have to make sure that you don't have any file conflicts between multiple cookbooks. The last one to write wins.
-- `node['ohai']['hints_path']` - location to drop off hints directory. This defaults to the path defined by Ohai, which is `/etc/chef/ohai/hints` on Linux and `C:/chef/ohai/hints` on Windows.
-
-## Usage
-=======
 ### `ohai_hint`
->>>>>>> modern_ohai
 
 Creates Ohai hint files, which are consumed by Ohai plugins in order to determine if they should run or not.
 
@@ -46,14 +37,9 @@ Creates Ohai hint files, which are consumed by Ohai plugins in order to determin
 
 Hint file installed to the default directory:
 
-<<<<<<< HEAD
-- The "`ohai.plugin_path`" config setting has _NOT_ been properly set in the Chef config file
-- The "`ohai.plugin_path`" config setting has been properly set in the Chef config file and there are updated plugins dropped off at "`node['ohai']['plugin_path']`".
-=======
 ```ruby
 ohai_hint 'ec2'
 ```
->>>>>>> modern_ohai
 
 Hint file not installed at compile time:
 
