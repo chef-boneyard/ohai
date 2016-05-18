@@ -33,7 +33,7 @@ path cannot be determined")
   # is the desired plugin dir in the ohai config plugin dir array?
   def in_plugin_path?(path)
     # get the directory where we plan to stick the plugin (not the actual file path)
-    desired_dir = ::File.dirname(path)
+    desired_dir = ::File.directory?(path) ? path : ::File.dirname(path)
 
     # get the array of plugin paths Ohai knows about
     ohai_plugin_dir = if node['chef_packages']['ohai']['version'].to_f <= 8.6
