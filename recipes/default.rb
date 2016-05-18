@@ -16,3 +16,5 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+
+Chef::Log.warn('The Ohai cookbook default recipe has no content has of the 4.0 release. See the readme for instructions on using the custom resources.')
