@@ -20,8 +20,8 @@ action_class do
       ::File.dirname(Chef::Config['config_file'])
     else
       Chef::Application.fatal!("No chef config file defined. Are you running \
-                                chef-solo? If so you will need to define a path \
-                                for the ohai_plugin as the path cannot be determined")
+chef-solo? If so you will need to define a path for the ohai_plugin as the \
+path cannot be determined")
     end
   end
 
@@ -50,10 +50,9 @@ action_class do
   # Ideally in future versions of Ohai /etc/chef/ohai/plugins is in the path.
   def plugin_path_warning
     Chef::Log.warn("The Ohai plugin_path does not include #{desired_plugin_path}. \
-                    Ohai will reload on each chef-client run in order to add \
-                    this directory to the path unless you modify your client.rb \
-                    configuration to add this directory to plugin_path. See \
-                    https://docs.chef.io/config_rb_client.html")
+Ohai will reload on each chef-client run in order to add this directory to the \
+path unless you modify your client.rb configuration to add this directory to \
+plugin_path. See 'Ohai Settings' at https://docs.chef.io/config_rb_client.html")
   end
 end
 
