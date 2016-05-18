@@ -35,6 +35,17 @@ action :create do
   end
 end
 
+action :delete do
+  file ohai_hint_path do
+    action :delete
+    notifies :reload, ohai[reload ohai post hint removal]
+  end
+
+  ohai 'reload ohai post hint removal' do
+    action :nothing
+  end
+end
+
 # this resource forces itself to run at compile_time
 def after_created
   if compile_time
