@@ -36,20 +36,20 @@ path cannot be determined")
     desired_dir = ::File.directory?(path) ? path : ::File.dirname(path)
 
     # get the array of plugin paths Ohai knows about
-    ohai_plugin_dir = if node['chef_packages']['ohai']['version'].to_f <= 8.6
-                        ::Ohai::Config['plugin_path']
+    ohai_plugin_dir = if ::Ohai::Config.ohai.nil?
+                        ::Ohai::Config['plugin_path'] # old format
                       else
-                        ::Ohai::Config.ohai['plugin_path']
+                        ::Ohai::Config.ohai['plugin_path'] # new format
                       end
 
     ohai_plugin_dir.include?(desired_dir)
   end
 
   def add_to_plugin_path(path)
-    if node['chef_packages']['ohai']['version'].to_f <= 8.6
-      ::Ohai::Config['plugin_path'] << path
+    if ::Ohai::Config.ohai.nil?
+      ::Ohai::Config['plugin_path'] << path # old format
     else
-      ::Ohai::Config.ohai['plugin_path'] << path
+      ::Ohai::Config.ohai['plugin_path'] << path # new format
     end
   end
 
