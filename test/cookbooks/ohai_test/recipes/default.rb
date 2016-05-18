@@ -10,6 +10,8 @@ end
 
 ohai_hint 'hint_without_content'
 
+ohai_hint 'hint_with_json_in_resource_name.json'
+
 ohai_plugin 'test'
 
 ohai_plugin 'another_test' do
