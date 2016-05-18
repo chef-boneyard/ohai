@@ -17,8 +17,6 @@ platforms:
     run_list: apt::default
   - name: freebsd-9.3
   - name: freebsd-10.2
-  - name: fedora-22
-    run_list: yum::dnf_yum_compat
   - name: fedora-23
     run_list: yum::dnf_yum_compat
   - name: ubuntu-12.04

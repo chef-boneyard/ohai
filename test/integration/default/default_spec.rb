@@ -16,3 +16,7 @@ end
 describe file("#{hint_path}/hint_without_content.json") do
   it { should be_file }
 end
+
+describe file("#{hint_path}/hint_with_json_in_resource_name.json") do
+  it { should be_file }
+end
