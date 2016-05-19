@@ -73,7 +73,7 @@ action :create do
     not_if { ::File.exist?(desired_plugin_path) }
   end
 
-  cookbook_file ::File.join(desired_plugin_path, new_resource.plugin_name + ".rb") do
+  cookbook_file ::File.join(desired_plugin_path, new_resource.plugin_name + '.rb') do
     source new_resource.source_file || "#{new_resource.plugin_name}.rb"
     owner 'root'
     group 'root'
