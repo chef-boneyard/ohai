@@ -2,6 +2,11 @@
 
 This file is used to list changes made in each version of the ohai cookbook.
 
+## v4.0.1 (2016-05-19)
+
+- Added .rb to the name of the plugins so they actually load
+- Added testing to ensure the plugins are being loaded in the chef run
+
 ## v4.0.0 (2016-05-18)
 
 ### BREAKING CHANGE:
