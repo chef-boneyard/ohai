@@ -2,6 +2,10 @@
 
 This file is used to list changes made in each version of the ohai cookbook.
 
+## v4.0.2 (2016-05-23)
+
+- Resolve failures on Windows nodes
+
 ## v4.0.1 (2016-05-19)
 
 - Added .rb to the name of the plugins so they actually load
