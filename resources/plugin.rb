@@ -75,9 +75,6 @@ action :create do
 
   cookbook_file ::File.join(desired_plugin_path, new_resource.plugin_name + '.rb') do
     source new_resource.source_file || "#{new_resource.plugin_name}.rb"
-    owner 'root'
-    group 'root'
-    mode 00644
     notifies :reload, "ohai[#{new_resource.plugin_name}]", :immediately
   end
 
