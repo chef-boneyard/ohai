@@ -18,6 +18,11 @@ ohai_plugin 'another_test' do
   source_file 'another_test_source_file.rb'
 end
 
+ohai_plugin 'template_test' do
+  resource :template
+  variables(plugin_name: 'template_test')
+end
+
 # node['test'] comes from the ohai plugin
 file '/expected_file' do
   action :create

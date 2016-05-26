@@ -71,9 +71,11 @@ Installs custom Ohai plugins.
 #### Resource Attributes
 
 - `plugin_name` - The name to give the plugin on the filesystem. Should be string, default is name of resource.
-- `path` - The path to your custom plugin directory. Defaults to a directory named 'ohai_plugins' in the Chef config dir
-- `source_file` - The source file for the plugin in your cookbook if not NAME.rb
-- `compile_time` - Should the resource run at compile time. This defaults to true
+- `path` - The path to your custom plugin directory. Defaults to a directory named 'ohai_plugins' in the Chef config dir.
+- `source_file` - The source file for the plugin in your cookbook if not NAME.rb.
+- `resource` - The resource type for the plugin file. Either `:cookbook_file` or `:template`. Defaults to `:cookbook_file`.
+- `variables` - Usable only if `resource` is `:template`. Defines the template's variables.
+- `compile_time` - Should the resource run at compile time. This defaults to `true`.
 
 #### examples
 
@@ -89,6 +91,16 @@ Installation where the resource doesn't match the filename and you install to a 
 ohai_plugin 'My Ohai Plugin' do
   name 'my_custom_plugin'
   path '/my/custom/path/'
+end
+```
+
+Installation using a template:
+
+```ruby
+ohai_plugin 'My Templated Plugin' do
+  name 'templated_plugin'
+  resource :template
+  variables node_type: :web_server
 end
 ```
 
