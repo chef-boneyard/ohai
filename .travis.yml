@@ -24,6 +24,7 @@ env:
   - INSTANCE=default-ubuntu-1204
   - INSTANCE=default-ubuntu-1404
   - INSTANCE=default-ubuntu-1604
+  - INSTANCE=default-opensuse-132
 
   fast_finish: true
 
