@@ -2,6 +2,10 @@
 
 This file is used to list changes made in each version of the ohai cookbook.
 
+## v4.1.0 (2016-05-26)
+
+- Added the ability to use templates and pass in variables with the plugin custom resource
+
 ## v4.0.2 (2016-05-23)
 
 - Resolve failures on Windows nodes
