@@ -10,6 +10,7 @@ Contains custom resources for adding Ohai hints and installing custom Ohai plugi
 
 - Debian/Ubuntu
 - RHEL/CentOS/Scientific/Amazon/Oracle
+- openSUSE / SUSE Enterprise Linux
 - FreeBSD
 - Windows
 
