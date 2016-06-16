@@ -2,6 +2,11 @@
 
 This file is used to list changes made in each version of the ohai cookbook.
 
+## v4.1.1 (2016-06-16)
+
+- Fixed error in notifies reload for the delete action
+- Bump the compat_resource requirement from 12.9+ to 12.10+ to prevent random failures
+
 ## v4.1.0 (2016-05-26)
 
 - Added the ability to use templates and pass in variables with the plugin custom resource
