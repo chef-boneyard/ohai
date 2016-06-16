@@ -106,7 +106,7 @@ end
 action :delete do
   file ::File.join(desired_plugin_path, new_resource.plugin_name) do
     action :delete
-    notifies :reload, ohai[reload ohai post plugin removal]
+    notifies :reload, 'ohai[reload ohai post plugin removal]'
   end
 
   ohai 'reload ohai post plugin removal' do
