@@ -9,7 +9,9 @@ addons:
     packages:
       - chefdk
 
-install: echo "skip bundle install"
+branches:
+  only:
+  - master
 
 services: docker
 

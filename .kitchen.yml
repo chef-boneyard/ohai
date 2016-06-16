@@ -6,6 +6,7 @@ provisioner:
 
 verifier:
   name: inspec
+  format: doc
 
 platforms:
   - name: centos-5.11
@@ -19,6 +20,7 @@ platforms:
   - name: freebsd-10.2
   - name: fedora-23
     run_list: yum::dnf_yum_compat
+  - name: opensuse-13.2
   - name: ubuntu-12.04
     run_list: apt::default
   - name: ubuntu-14.04
