@@ -28,3 +28,7 @@ file '/expected_file' do
   action :create
   only_if { node['tester'] }
 end
+
+ohai_plugin 'tester' do
+  action :delete
+end
