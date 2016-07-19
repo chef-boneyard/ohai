@@ -1,6 +1,7 @@
 property :plugin_name, kind_of: String, name_attribute: true
 property :path, kind_of: String
 property :source_file, kind_of: String
+property :cookbook, kind_of: String
 property :resource, [:cookbook_file, :template], default: :cookbook_file
 property :variables, kind_of: Hash
 property :compile_time, [true, false], default: true
@@ -77,11 +78,13 @@ action :create do
 
   if new_resource.resource.eql?(:cookbook_file)
     cookbook_file ::File.join(desired_plugin_path, new_resource.plugin_name + '.rb') do
+      cookbook new_resource.cookbook
       source new_resource.source_file || "#{new_resource.plugin_name}.rb"
       notifies :reload, "ohai[#{new_resource.plugin_name}]", :immediately
     end
   elsif new_resource.resource.eql?(:template)
     template ::File.join(desired_plugin_path, new_resource.plugin_name + '.rb') do
+      cookbook new_resource.cookbook
       source new_resource.source_file || "#{new_resource.plugin_name}.rb"
       variables new_resource.variables
       notifies :reload, "ohai[#{new_resource.plugin_name}]", :immediately

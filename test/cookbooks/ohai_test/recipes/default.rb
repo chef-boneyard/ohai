@@ -16,6 +16,7 @@ ohai_plugin 'tester'
 
 ohai_plugin 'another_test' do
   source_file 'another_test_source_file.rb'
+  cookbook 'ohai_test'
 end
 
 ohai_plugin 'template_test' do
