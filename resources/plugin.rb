@@ -45,7 +45,12 @@ path cannot be determined")
                         ::Ohai::Config.ohai['plugin_path'] # new format
                       end
 
-    ohai_plugin_dir.include?(desired_dir)
+    case node['platform']
+    when 'windows'
+      ohai_plugin_dir.map(&:downcase).include?(desired_dir.downcase)
+    else
+      ohai_plugin_dir.include?(desired_dir)
+    end
   end
 
   def add_to_plugin_path(path)
