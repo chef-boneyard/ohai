@@ -2,6 +2,13 @@
 
 This file is used to list changes made in each version of the ohai cookbook.
 
+## 4.2.1 (2016-09-08)
+- Fix typo in compile warning text
+- Depend on the latest compat_resource (12.14)
+- Remove Chef 11 compat in the metadata
+- Require Chef 12.1 not 12.0
+- Define ohai_plugin matcher for Chefspec
+
 ## v4.2.0 (2016-07-19)
 
 - Added the ability to specify the source cookbook for the cookbook_file or template used in the ohai_plugin resource.
