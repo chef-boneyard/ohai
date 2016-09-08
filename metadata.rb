@@ -15,4 +15,4 @@ depends 'compat_resource', '>= 12.14'
 source_url 'https://github.com/chef-cookbooks/ohai'
 issues_url 'https://github.com/chef-cookbooks/ohai/issues'
 
-chef_version '>= 12.0' if respond_to?(:chef_version)
+chef_version '>= 12.0'
