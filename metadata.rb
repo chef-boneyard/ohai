@@ -10,7 +10,7 @@ version '4.2.0'
   supports os
 end
 
-depends 'compat_resource', '>= 12.10'
+depends 'compat_resource', '>= 12.14'
 
 source_url 'https://github.com/chef-cookbooks/ohai'
 issues_url 'https://github.com/chef-cookbooks/ohai/issues'
