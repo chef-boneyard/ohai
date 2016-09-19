@@ -2,6 +2,9 @@
 
 This file is used to list changes made in each version of the ohai cookbook.
 
+## 4.2.2 (2016-09-19)
+- Ignore case in plugin path check on Windows
+
 ## 4.2.1 (2016-09-08)
 - Fix typo in compile warning text
 - Depend on the latest compat_resource (12.14)
