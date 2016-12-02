@@ -2,6 +2,12 @@
 
 This file is used to list changes made in each version of the ohai cookbook.
 
+## 4.2.3 (2016-12-02)
+- Prevent chef_version metadata from failing runs in Opsworks
+- Better explain how to resolve the plugin_path issue
+- Add suse as a supported platform
+- Require at least compat_resource 12.14.7
+
 ## 4.2.2 (2016-09-19)
 - Ignore case in plugin path check on Windows
 
