@@ -20,7 +20,7 @@ platforms:
   - name: opensuse-leap-42.1
   - name: ubuntu-12.04
   - name: ubuntu-14.04
-  - name: ubuntu-14.04-chef12
+  - name: ubuntu-14.04-chef121
     driver_config:
       box: bento/ubuntu-14.04
     provisioner:
