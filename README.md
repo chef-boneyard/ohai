@@ -22,6 +22,12 @@ Contains custom resources for adding Ohai hints and installing custom Ohai plugi
 
 - compat_resource
 
+## Recipes
+
+### `lsb`
+
+Install requirements to use `node['lsb']` attributes.
+
 ## Custom Resources (Providers)
 
 ### `ohai_hint`

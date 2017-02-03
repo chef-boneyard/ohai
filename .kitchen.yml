@@ -37,3 +37,13 @@ suites:
 - name: default
   run_list:
     - recipe[ohai_test::default]
+- name: lsb
+  run_list:
+    - recipe[ohai::lsb]
+  verifier:
+    inspec_tests:
+      - test/recipes
+  includes:
+    - centos-7.2
+    - debian-8.5
+    - ubuntu-16.04
