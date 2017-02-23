@@ -22,6 +22,7 @@ namespace :style do
       t.options = {
         fail_tags: ['any'],
         progress: true,
+        exclude: 'spec',
       }
     end
   rescue LoadError => e
@@ -49,7 +50,7 @@ namespace :integration do
 
     desc 'Run kitchen integration tests'
     Kitchen::RakeTasks.new
-  rescue StandardError => e
+  rescue LoadError, StandardError => e
     puts ">>> Gem load error: #{e}, omitting #{task.name}" unless ENV['CI']
   end
 end
