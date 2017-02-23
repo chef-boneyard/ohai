@@ -2,6 +2,10 @@
 
 This file is used to list changes made in each version of the ohai cookbook.
 
+## 5.0.0 (2017-02-23)
+
+- Require Chef 12.5+ and remove compat_resource dependency
+
 ## 4.2.3 (2016-12-02)
 - Prevent chef_version metadata from failing runs in Opsworks
 - Better explain how to resolve the plugin_path issue

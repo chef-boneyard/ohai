@@ -4,7 +4,7 @@ maintainer_email 'cookbooks@chef.io'
 license 'Apache 2.0'
 description 'Provides custom resources for installing Ohai hints and plugins'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version '4.2.3'
+version '5.0.0'
 
 %w(ubuntu debian centos redhat amazon scientific fedora oracle suse opensuse opensuseleap freebsd windows zlinux).each do |os|
   supports os
