@@ -12,7 +12,9 @@ ohai_hint 'hint_without_content'
 
 ohai_hint 'hint_with_json_in_resource_name.json'
 
-ohai_plugin 'tester'
+ohai_plugin 'create tester' do
+  plugin_name 'tester'
+end
 
 ohai_plugin 'another_test' do
   source_file 'another_test_source_file.rb'
