@@ -22,7 +22,7 @@ Contains custom resources for adding Ohai hints and installing custom Ohai plugi
 
 - none
 
-## Custom Resources (Providers)
+## Custom Resources
 
 ### `ohai_hint`
 
