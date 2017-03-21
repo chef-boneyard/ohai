@@ -6,7 +6,7 @@ property :resource, [:cookbook_file, :template], default: :cookbook_file
 property :variables, kind_of: Hash
 property :compile_time, [true, false], default: true
 
-action_class do
+action_class.class_eval do
   # return the path property if specified or
   # CHEF_CONFIG_PATH/ohai/plugins if a path isn't specified
   def desired_plugin_path

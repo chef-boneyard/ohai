@@ -2,7 +2,7 @@ property :hint_name, kind_of: String, name_attribute: true
 property :content, kind_of: Hash
 property :compile_time, [true, false], default: true
 
-action_class do
+action_class.class_eval do
   def ohai_hint_path
     path = ::File.join(::Ohai::Config[:hints_path].first, new_resource.hint_name)
     path << '.json' unless path.end_with?('.json')
