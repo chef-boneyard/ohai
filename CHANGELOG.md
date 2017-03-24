@@ -2,6 +2,10 @@
 
 This file is used to list changes made in each version of the ohai cookbook.
 
+## 5.0.2 (2017-03-24)
+
+- Remove class_eval
+
 ## 5.0.1 (2017-03-14)
 
 - Test with Delivery Local Mode
