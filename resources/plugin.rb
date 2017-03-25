@@ -6,7 +6,57 @@ property :resource, [:cookbook_file, :template], default: :cookbook_file
 property :variables, kind_of: Hash
 property :compile_time, [true, false], default: true
 
-action_class do
+action :create do
+  # why create_if_missing you ask?
+  # no one can agree on perms and this allows them to manage the perms elsewhere
+  directory desired_plugin_path do
+    action :create
+    recursive true
+    not_if { ::File.exist?(desired_plugin_path) }
+  end
+
+  if new_resource.resource.eql?(:cookbook_file)
+    cookbook_file ::File.join(desired_plugin_path, new_resource.plugin_name + '.rb') do
+      cookbook new_resource.cookbook
+      source new_resource.source_file || "#{new_resource.plugin_name}.rb"
+      notifies :reload, "ohai[#{new_resource.plugin_name}]", :immediately
+    end
+  elsif new_resource.resource.eql?(:template)
+    template ::File.join(desired_plugin_path, new_resource.plugin_name + '.rb') do
+      cookbook new_resource.cookbook
+      source new_resource.source_file || "#{new_resource.plugin_name}.rb"
+      variables new_resource.variables
+      notifies :reload, "ohai[#{new_resource.plugin_name}]", :immediately
+    end
+  end
+
+  # Add the plugin path to the ohai plugin path if need be and warn
+  # the user that this is going to result in a reload every run
+  unless in_plugin_path?(desired_plugin_path)
+    plugin_path_warning
+    Chef::Log.warn("Adding #{desired_plugin_path} to the Ohai plugin path for this chef-client run only")
+    add_to_plugin_path(desired_plugin_path)
+    reload_required = true
+  end
+
+  ohai new_resource.plugin_name do
+    action :nothing
+    action :reload if reload_required
+  end
+end
+
+action :delete do
+  file ::File.join(desired_plugin_path, new_resource.plugin_name) do
+    action :delete
+    notifies :reload, 'ohai[reload ohai post plugin removal]'
+  end
+
+  ohai 'reload ohai post plugin removal' do
+    action :nothing
+  end
+end
+
+action_class.class_eval do
   # return the path property if specified or
   # CHEF_CONFIG_PATH/ohai/plugins if a path isn't specified
   def desired_plugin_path
@@ -55,56 +105,6 @@ path unless you modify your client.rb configuration to add this directory to \
 plugin_path. The plugin_path can be set via the chef-client::config recipe. \
 See 'Ohai Settings' at https://docs.chef.io/config_rb_client.html#ohai-settings \
 for more details.")
-  end
-end
-
-action :create do
-  # why create_if_missing you ask?
-  # no one can agree on perms and this allows them to manage the perms elsewhere
-  directory desired_plugin_path do
-    action :create
-    recursive true
-    not_if { ::File.exist?(desired_plugin_path) }
-  end
-
-  if new_resource.resource.eql?(:cookbook_file)
-    cookbook_file ::File.join(desired_plugin_path, new_resource.plugin_name + '.rb') do
-      cookbook new_resource.cookbook
-      source new_resource.source_file || "#{new_resource.plugin_name}.rb"
-      notifies :reload, "ohai[#{new_resource.plugin_name}]", :immediately
-    end
-  elsif new_resource.resource.eql?(:template)
-    template ::File.join(desired_plugin_path, new_resource.plugin_name + '.rb') do
-      cookbook new_resource.cookbook
-      source new_resource.source_file || "#{new_resource.plugin_name}.rb"
-      variables new_resource.variables
-      notifies :reload, "ohai[#{new_resource.plugin_name}]", :immediately
-    end
-  end
-
-  # Add the plugin path to the ohai plugin path if need be and warn
-  # the user that this is going to result in a reload every run
-  unless in_plugin_path?(desired_plugin_path)
-    plugin_path_warning
-    Chef::Log.warn("Adding #{desired_plugin_path} to the Ohai plugin path for this chef-client run only")
-    add_to_plugin_path(desired_plugin_path)
-    reload_required = true
-  end
-
-  ohai new_resource.plugin_name do
-    action :nothing
-    action :reload if reload_required
-  end
-end
-
-action :delete do
-  file ::File.join(desired_plugin_path, new_resource.plugin_name) do
-    action :delete
-    notifies :reload, 'ohai[reload ohai post plugin removal]'
-  end
-
-  ohai 'reload ohai post plugin removal' do
-    action :nothing
   end
 end
 

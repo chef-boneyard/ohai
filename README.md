@@ -16,7 +16,7 @@ Contains custom resources for adding Ohai hints and installing custom Ohai plugi
 
 ### Chef
 
-- Chef 12.7+
+- Chef 12.5+
 
 ### Cookbooks
 
