@@ -10,10 +10,10 @@ action_class do
   # return the path property if specified or
   # CHEF_CONFIG_PATH/ohai/plugins if a path isn't specified
   def desired_plugin_path
-    if path
-      path
+    if new_resource.path
+      new_resource.path
     else
-      ohai_plugin_path
+      ::File.join(chef_config_path, 'ohai', 'plugins')
     end
   end
 
@@ -28,37 +28,21 @@ path cannot be determined")
     end
   end
 
-  # return the ohai plugin path. Most likely /etc/chef/ohai/plugins/
-  def ohai_plugin_path
-    ::File.join(chef_config_path, 'ohai', 'plugins')
-  end
-
   # is the desired plugin dir in the ohai config plugin dir array?
   def in_plugin_path?(path)
     # get the directory where we plan to stick the plugin (not the actual file path)
     desired_dir = ::File.directory?(path) ? path : ::File.dirname(path)
 
-    # get the array of plugin paths Ohai knows about
-    ohai_plugin_dir = if ::Ohai::Config.ohai.nil?
-                        ::Ohai::Config['plugin_path'] # old format
-                      else
-                        ::Ohai::Config.ohai['plugin_path'] # new format
-                      end
-
     case node['platform']
     when 'windows'
-      ohai_plugin_dir.map(&:downcase).include?(desired_dir.downcase)
+      ::Ohai::Config.ohai['plugin_path'].map(&:downcase).include?(desired_dir.downcase)
     else
-      ohai_plugin_dir.include?(desired_dir)
+      ::Ohai::Config.ohai['plugin_path'].include?(desired_dir)
     end
   end
 
   def add_to_plugin_path(path)
-    if ::Ohai::Config.ohai.nil?
-      ::Ohai::Config['plugin_path'] << path # old format
-    else
-      ::Ohai::Config.ohai['plugin_path'] << path # new format
-    end
+    ::Ohai::Config.ohai['plugin_path'] << path # new format
   end
 
   # we need to warn the user that unless the path for this plugin is in Ohai's

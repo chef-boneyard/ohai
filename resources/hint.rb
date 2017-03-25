@@ -4,7 +4,7 @@ property :compile_time, [true, false], default: true
 
 action_class do
   def ohai_hint_path
-    path = ::File.join(::Ohai::Config[:hints_path].first, new_resource.hint_name)
+    path = ::File.join(::Ohai::Config.ohai.hints_path.first, new_resource.hint_name)
     path << '.json' unless path.end_with?('.json')
     path
   end
@@ -24,7 +24,7 @@ action_class do
 end
 
 action :create do
-  directory ::Ohai::Config[:hints_path].first do
+  directory ::Ohai::Config.ohai.hints_path.first do
     action :create
     recursive true
   end
