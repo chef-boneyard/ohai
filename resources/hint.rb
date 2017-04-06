@@ -1,5 +1,5 @@
-property :hint_name, kind_of: String, name_attribute: true
-property :content, kind_of: Hash
+property :hint_name, String, name_property: true
+property :content, Hash
 property :compile_time, [true, false], default: true
 
 action_class do
