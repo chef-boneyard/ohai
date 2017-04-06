@@ -2,6 +2,12 @@
 
 This file is used to list changes made in each version of the ohai cookbook.
 
+## 5.0.3 (2017-04-06)
+
+- Use class_eval again in the custom resource to provide Chef 12.5/12.6 compatibility
+- Remove kind_of and use name_property not name_attribute
+- Fix failures on Chef 13
+
 ## 5.0.2 (2017-03-24)
 
 - Remove class_eval
