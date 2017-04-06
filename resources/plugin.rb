@@ -1,9 +1,9 @@
-property :plugin_name, kind_of: String, name_attribute: true
-property :path, kind_of: String
-property :source_file, kind_of: String
-property :cookbook, kind_of: String
+property :plugin_name, String, name_property: true
+property :path, String
+property :source_file, String
+property :cookbook, String
 property :resource, [:cookbook_file, :template], default: :cookbook_file
-property :variables, kind_of: Hash
+property :variables, Hash
 property :compile_time, [true, false], default: true
 
 action :create do
