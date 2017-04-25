@@ -46,7 +46,7 @@ action :create do
 end
 
 action :delete do
-  file ::File.join(desired_plugin_path, new_resource.plugin_name) do
+  file ::File.join(desired_plugin_path, new_resource.plugin_name + '.rb') do
     action :delete
     notifies :reload, 'ohai[reload ohai post plugin removal]'
   end
