@@ -2,6 +2,10 @@
 
 This file is used to list changes made in each version of the ohai cookbook.
 
+## 5.1.0 (2017-05-06)
+
+- Workaround action_class bug by requiring Chef 12.7+
+
 ## 5.0.4 (2017-04-25)
 
 - Fix lack of .rb extension when deleting plugins.
