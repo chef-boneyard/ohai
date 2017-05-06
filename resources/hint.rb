@@ -25,7 +25,7 @@ action :delete do
   end
 end
 
-action_class.class_eval do
+action_class do
   def ohai_hint_path
     path = ::File.join(::Ohai::Config.ohai.hints_path.first, new_resource.hint_name)
     path << '.json' unless path.end_with?('.json')

@@ -56,7 +56,7 @@ action :delete do
   end
 end
 
-action_class.class_eval do
+action_class do
   # return the path property if specified or
   # CHEF_CONFIG_PATH/ohai/plugins if a path isn't specified
   def desired_plugin_path
