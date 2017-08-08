@@ -64,11 +64,11 @@ module OhaiCookbook
     # Ideally in future versions of Ohai /etc/chef/ohai/plugins is in the path.
     def plugin_path_warning
       Chef::Log.warn("The Ohai plugin_path does not include #{desired_plugin_path}. \
-  Ohai will reload on each chef-client run in order to add this directory to the \
-  path unless you modify your client.rb configuration to add this directory to \
-  plugin_path. The plugin_path can be set via the chef-client::config recipe. \
-  See 'Ohai Settings' at https://docs.chef.io/config_rb_client.html#ohai-settings \
-  for more details.")
+Ohai will reload on each chef-client run in order to add this directory to the \
+path unless you modify your client.rb configuration to add this directory to \
+plugin_path. The plugin_path can be set via the chef-client::config recipe. \
+See 'Ohai Settings' at https://docs.chef.io/config_rb_client.html#ohai-settings \
+for more details.")
     end
   end
 end
