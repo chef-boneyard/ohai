@@ -47,5 +47,9 @@ describe OhaiCookbook::PluginHelpers do
   end
 
   describe('#chef_config_path') do
+    it 'returns a path given the chef-client config file' do
+      Chef::Config['config_file'] = '/foo/bar/client.rb'
+      expect(helper.chef_config_path).to eq('/foo/bar')
+    end
   end
 end
