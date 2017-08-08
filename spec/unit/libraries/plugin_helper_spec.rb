@@ -30,6 +30,20 @@ describe OhaiCookbook::PluginHelpers do
   end
 
   describe('#in_plugin_path?') do
+    it 'returns false if the path is not in the config' do
+      ::Ohai::Config.ohai['plugin_path'] = ['/foo/bar']
+      expect(helper.in_plugin_path?('/foo/baz/plugin.rb')).to eq(false)
+    end
+
+    it 'returns true if the path is in the config' do
+      ::Ohai::Config.ohai['plugin_path'] = ['/foo/bar']
+      expect(helper.in_plugin_path?('/foo/bar/plugin.rb')).to eq(true)
+    end
+
+    it 'returns true if the path is in the config regardless of format' do
+      ::Ohai::Config.ohai['plugin_path'] = ['C:/foo/bar']
+      expect(helper.in_plugin_path?('C:\\foo\\bar\\plugin.rb')).to eq(true)
+    end
   end
 
   describe('#chef_config_path') do
