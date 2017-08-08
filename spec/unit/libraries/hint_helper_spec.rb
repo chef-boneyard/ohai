@@ -24,12 +24,12 @@ describe OhaiCookbook::HintHelpers do
       expect(helper.format_content(foo: 'bar')).to eq("{\n  \"foo\": \"bar\"\n}")
     end
 
-    it 'returns nil if content is nil' do
-      expect(helper.format_content(nil)).to eq(nil)
+    it 'returns empty string if content is nil to avoid deprecation warnings' do
+      expect(helper.format_content(nil)).to eq('')
     end
 
-    it 'returns nil if content is empty hash' do
-      expect(helper.format_content({})).to eq(nil)
+    it 'returns empty string if content is empty hash' do
+      expect(helper.format_content({})).to eq('')
     end
   end
 end

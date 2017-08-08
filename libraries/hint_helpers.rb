@@ -28,8 +28,7 @@ module OhaiCookbook
     end
 
     def format_content(content)
-      # passing nil to file produces deprecation warnings so pass an empty string
-      return nil if content.nil? || content.empty?
+      return '' if content.nil? || content.empty?
       JSON.pretty_generate(content)
     end
 
