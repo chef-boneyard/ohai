@@ -44,9 +44,10 @@ module OhaiCookbook
 
     # is the desired plugin dir in the ohai config plugin dir array?
     def in_plugin_path?(path)
+      normalized_path = normalize_path(path)
       # get the directory where we plan to stick the plugin (not the actual file path)
-      desired_dir = ::File.directory?(path) ? path : ::File.dirname(path)
-      ::Ohai::Config.ohai['plugin_path'].map { |x| normalize_path(x) }.include?(normalize_path(desired_dir))
+      desired_dir = ::File.directory?(normalized_path) ? normalized_path : ::File.dirname(normalized_path)
+      ::Ohai::Config.ohai['plugin_path'].map { |x| normalize_path(x) }.include?(desired_dir)
     end
 
     # return path to lower and with forward slashes so we can compare it
