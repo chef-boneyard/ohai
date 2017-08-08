@@ -8,14 +8,14 @@ action :create do
     recursive true
   end
 
-  file ohai_hint_path do
+  file ohai_hint_file_path(new_resource.hint_name) do
     action :create
-    content build_content
+    content format_content(new_resource.content)
   end
 end
 
 action :delete do
-  file ohai_hint_path do
+  file ohai_hint_file_path(new_resource.hint_name) do
     action :delete
     notifies :reload, ohai[reload ohai post hint removal]
   end

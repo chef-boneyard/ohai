@@ -21,16 +21,16 @@
 
 module OhaiCookbook
   module HintHelpers
-    def ohai_hint_path
-      path = ::File.join(::Ohai::Config.ohai.hints_path.first, new_resource.hint_name)
+    def ohai_hint_file_path(filename)
+      path = ::File.join(::Ohai::Config.ohai.hints_path.first, filename)
       path << '.json' unless path.end_with?('.json')
       path
     end
 
-    def build_content
+    def format_content(content)
       # passing nil to file produces deprecation warnings so pass an empty string
-      return nil if new_resource.content.nil? || new_resource.content.empty?
-      JSON.pretty_generate(new_resource.content)
+      return nil if content.nil? || content.empty?
+      JSON.pretty_generate(content)
     end
 
     def file_content(path)
