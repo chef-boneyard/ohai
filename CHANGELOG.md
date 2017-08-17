@@ -2,6 +2,13 @@
 
 This file is used to list changes made in each version of the ohai cookbook.
 
+## 5.2.0 (2017-08-17)
+
+- Resolve multiple issues with Windows paths that caused the cookbook to converge on every run or fail
+- Move maintainer information to the readme
+- Add testing on Chef 12.7 in Travis
+- Move helpers to their own modules and add testing framework
+
 ## 5.1.0 (2017-05-06)
 
 - Workaround action_class bug by requiring Chef 12.7+
