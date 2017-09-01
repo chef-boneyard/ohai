@@ -9,18 +9,18 @@ verifier:
   name: inspec
 
 platforms:
-  - name: amazon-linux
+  - name: amazonlinux
     driver_config:
       box: mvbcoding/awslinux
-  - name: centos-6.9
-  - name: centos-7.3
-  - name: debian-7.11
-  - name: debian-8.9
-  - name: debian-9.1
-  - name: freebsd-10.3
-  - name: freebsd-11.0
+  - name: centos-6
+  - name: centos-7
+  - name: debian-7
+  - name: debian-8
+  - name: debian-9
+  - name: freebsd-10
+  - name: freebsd-11
   - name: fedora-26
-  - name: opensuse-leap-42.3
+  - name: opensuse-leap-42
   - name: ubuntu-14.04
   - name: ubuntu-14.04-chef127
     driver_config:
