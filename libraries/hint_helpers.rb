@@ -31,12 +31,5 @@ module OhaiCookbook
       return '' if content.nil? || content.empty?
       JSON.pretty_generate(content)
     end
-
-    def file_content(path)
-      return JSON.parse(::File.read(path))
-    rescue JSON::ParserError
-      Chef::Log.debug("Could not parse JSON in ohai hint at #{ohai_hint_path}. It's probably an empty hint file")
-      return nil
-    end
   end
 end
