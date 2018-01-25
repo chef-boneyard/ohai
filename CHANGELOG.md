@@ -2,6 +2,11 @@
 
 This file is used to list changes made in each version of the ohai cookbook.
 
+## 5.2.1 (2018-01-25)
+
+- Switch from a .foodcritic file to an inline comments which resolve Supermarket warnings
+- Remove unused helper method
+
 ## 5.2.0 (2017-08-17)
 
 - Resolve multiple issues with Windows paths that caused the cookbook to converge on every run or fail
