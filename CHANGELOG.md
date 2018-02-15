@@ -2,6 +2,10 @@
 
 This file is used to list changes made in each version of the ohai cookbook.
 
+## 5.2.2 (2018-02-15)
+
+- Remove ChefSpec matchers we no longer need since they're auto generated
+
 ## 5.2.1 (2018-01-25)
 
 - Switch from a .foodcritic file to an inline comments which resolve Supermarket warnings
