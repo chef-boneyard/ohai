@@ -4,7 +4,7 @@
 #
 # Author:: Tim Smith (<tsmith@chef.io>)
 #
-# Copyright:: 2017, Chef Software, Inc.
+# Copyright:: 2017-2018, Chef Software, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -47,7 +47,9 @@ module OhaiCookbook
       normalized_path = normalize_path(path)
       # get the directory where we plan to stick the plugin (not the actual file path)
       desired_dir = ::File.directory?(normalized_path) ? normalized_path : ::File.dirname(normalized_path)
-      ::Ohai::Config.ohai['plugin_path'].map { |x| normalize_path(x) }.include?(desired_dir)
+      ::Ohai::Config.ohai['plugin_path'].map { |x| normalize_path(x) }.any? do |d|
+        desired_dir.start_with?(d)
+      end
     end
 
     # return path to lower and with forward slashes so we can compare it

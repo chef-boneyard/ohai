@@ -40,6 +40,11 @@ describe OhaiCookbook::PluginHelpers do
       expect(helper.in_plugin_path?('/foo/bar/plugin.rb')).to eq(true)
     end
 
+    it 'returns true if the path is a subdirectory of the path in the config' do
+      ::Ohai::Config.ohai['plugin_path'] = ['/foo/bar']
+      expect(helper.in_plugin_path?('/foo/bar/baz/plugin.rb')).to eq(true)
+    end
+
     it 'returns true if the path is in the config regardless of format' do
       ::Ohai::Config.ohai['plugin_path'] = ['C:/foo/bar']
       expect(helper.in_plugin_path?('C:\\foo\\bar\\plugin.rb')).to eq(true)
