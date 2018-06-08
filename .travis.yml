@@ -1,5 +1,4 @@
 sudo: required
-dist: trusty
 
 addons:
   apt:
@@ -28,6 +27,7 @@ env:
   - INSTANCE=default-opensuse-leap
   - INSTANCE=default-ubuntu-1404
   - INSTANCE=default-ubuntu-1604
+  - INSTANCE=default-ubuntu-1804
   - INSTANCE=default-ubuntu-1604 CHEF_VERSION=12.7.2
 
 before_script:
@@ -37,7 +37,7 @@ before_script:
   - cookstyle --version
   - foodcritic --version
 
-script: KITCHEN_LOCAL_YAML=.kitchen.dokken.yml kitchen verify ${INSTANCE}
+script: KITCHEN_LOCAL_YAML=.kitchen.dokken.yml CHEF_VERSION=${CHEF_VERSION} kitchen verify ${INSTANCE}
 
 matrix:
   include:
