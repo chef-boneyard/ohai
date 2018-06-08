@@ -25,7 +25,7 @@ module OhaiCookbook
     # CHEF_CONFIG_PATH/ohai/plugins if a path isn't specified
     def desired_plugin_path
       if new_resource.path
-        new_resource.path
+        new_resource.path.chomp('/') # if the user gave us /foo/bar/ we need /foo/bar for later comparison
       else
         ::File.join(chef_config_path, 'ohai', 'plugins')
       end
