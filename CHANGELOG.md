@@ -2,6 +2,11 @@
 
 This file is used to list changes made in each version of the ohai cookbook.
 
+## 5.2.3 (2018-06-08)
+
+- Make sure we properly compare a provided plugin path to the path on disk by stripping trailing slashes from the provided directory
+- Don't reload ohai when the plugin exists in a subdirectory of the config's set plugin path
+
 ## 5.2.2 (2018-02-15)
 
 - Remove ChefSpec matchers we no longer need since they're auto generated
