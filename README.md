@@ -4,6 +4,8 @@
 
 Contains custom resources for adding Ohai hints and installing custom Ohai plugins. Handles path creation as well as the reloading of Ohai so that new data will be available during the same run.
 
+NOTE: The ohai_hint resource shipped in Chef 14.0 (April 2018). When Chef 15.0 is released (April 2019) and Chef 13 goes EOL the ohai_hint resource will be removed from this cookbook.
+
 ## Requirements
 
 ### Platforms
