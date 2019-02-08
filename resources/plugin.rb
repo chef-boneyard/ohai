@@ -5,6 +5,7 @@ property :cookbook, String
 property :resource, [:cookbook_file, :template], default: :cookbook_file
 property :variables, Hash
 property :compile_time, [true, false], default: true
+property :load_single_plugin, [true, false], default: false
 
 action :create do
   # why create_if_missing you ask?
@@ -42,6 +43,7 @@ action :create do
   ohai new_resource.plugin_name do
     action :nothing
     action :reload if reload_required
+    plugin new_resource.plugin_name if new_resource.load_single_plugin
   end
 end
 

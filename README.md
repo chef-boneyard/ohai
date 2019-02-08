@@ -30,7 +30,7 @@ NOTE: The ohai_hint resource shipped in Chef 14.0 (April 2018). When Chef 15.0 i
 
 Creates Ohai hint files, which are consumed by Ohai plugins in order to determine if they should run or not.
 
-#### Resource Attributes
+#### Resource Properties
 
 - `hint_name` - The name of hints file and key. Should be string, default is name of resource.
 - `content` - Values of hints. It will be used as automatic attributes. Should be Hash, default is empty Hash
@@ -71,7 +71,7 @@ You can check for the creation or deletion of ohai hints with chefspec using the
 
 Installs custom Ohai plugins.
 
-#### Resource Attributes
+#### Resource Properties
 
 - `plugin_name` - The name to give the plugin on the filesystem. Should be string, default is name of resource.
 - `path` - The path to your custom plugin directory. Defaults to a directory named 'plugins' under the directory 'ohai' in the Chef config dir.
@@ -80,6 +80,7 @@ Installs custom Ohai plugins.
 - `resource` - The resource type for the plugin file. Either `:cookbook_file` or `:template`. Defaults to `:cookbook_file`.
 - `variables` - Usable only if `resource` is `:template`. Defines the template's variables.
 - `compile_time` - Should the resource run at compile time. This defaults to `true`.
+- `load_single_plugin` - Reload all plugins unless this value is set to true. Load only the named plugin.
 
 #### examples
 
