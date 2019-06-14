@@ -13,6 +13,7 @@ verifier:
 provisioner:
   name: chef_zero
   deprecations_as_errors: true
+  chef_license: accept-no-persist
 
 platforms:
   - name: windows-2012R2
