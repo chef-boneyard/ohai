@@ -25,3 +25,16 @@ end
 describe file('/expected_file') do
   it { should be_file }
 end
+
+# Shows that running with load_single_plugin does not reload all of the plugins
+describe file('/status') do
+  its(:content) { should match /Updated by tester1 load/ }
+end
+
+describe file('/status2') do
+  its(:content) { should match /status\"=>\"Second/ }
+end
+
+describe file('/status3') do
+  its(:content) { should match /status\"=>\"Second/ }
+end

@@ -35,3 +35,49 @@ end
 ohai_plugin 'tester' do
   action :delete
 end
+
+file 'Initial status file' do
+  path '/status'
+  content 'Initial'
+end.run_action(:create)
+
+ohai_plugin 'load test_status' do
+  plugin_name 'test_status'
+end
+
+ruby_block 'save loaded status' do
+  block do
+    ::File.write('/status', node['test_status'].inspect)
+  end
+end.run_action(:run)
+
+file 'Next status' do
+  path '/status'
+  content 'Second'
+end.run_action(:create)
+
+ohai_plugin 'Tester and reload all plugins' do
+  plugin_name 'tester'
+end
+
+ruby_block 'save loaded status second time' do
+  block do
+    ::File.write('/status2', node['test_status'].inspect)
+  end
+end.run_action(:run)
+
+file 'Third status' do
+  path '/status'
+  content 'Updated by tester1 load'
+end.run_action(:create)
+
+ohai_plugin 'Install Tester1 and load only tester1' do
+  plugin_name 'tester1'
+  load_single_plugin true
+end
+
+ruby_block 'save loaded status third time' do
+  block do
+    ::File.write('/status3', node['test_status'].inspect)
+  end
+end.run_action(:run)
