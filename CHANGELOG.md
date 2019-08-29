@@ -2,6 +2,16 @@
 
 This file is used to list changes made in each version of the ohai cookbook.
 
+## 5.3.0 (2019-08-29)
+
+- Add code owners file - [@tas50](https://github.com/tas50)
+- Cookstyle fixes - [@tas50](https://github.com/tas50)
+- Require Chef 13 or later - [@tas50](https://github.com/tas50)
+- Remove the long_description metadata - [@tas50](https://github.com/tas50)
+- Add the load_single_plugin option to the ohai_plugin resource - [@MarkGibbons](https://github.com/MarkGibbons)
+- Update for Chef 15 license agreement and Chef Workstation - [@tas50](https://github.com/tas50)
+- Update the platforms we test on in Travis / Test Kitchen - [@tas50](https://github.com/tas50)
+
 ## 5.2.5 (2018-09-04)
 
 - Add note that ohai_hint will be removed April 2019 when Chef 13 goes EOL as this resource now ships in Chef 14+
