@@ -18,7 +18,7 @@ NOTE: The ohai_hint resource shipped in Chef 14.0 (April 2018). When Chef 15.0 i
 
 ### Chef
 
-- Chef 12.7+
+- Chef 13+
 
 ### Cookbooks
 
