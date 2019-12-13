@@ -18,7 +18,7 @@ action :create do
 end
 
 action :delete do
-  file ohai_hint_file_path(new_resource.hint_name) do # ~FC009
+  file ohai_hint_file_path(new_resource.hint_name) do
     action :delete
     notifies :reload, ohai[reload ohai post hint removal]
   end
