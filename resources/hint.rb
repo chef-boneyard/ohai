@@ -3,7 +3,7 @@ resource_name :ohai_hint
 
 property :hint_name, String, name_property: true
 property :content, Hash
-property :compile_time, [true, false], default: true
+property :compile_time, [TrueClass, FalseClass], default: true
 
 action :create do
   directory ::Ohai::Config.ohai.hints_path.first do
