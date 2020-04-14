@@ -2,6 +2,10 @@
 
 This file is used to list changes made in each version of the ohai cookbook.
 
+## Unreleased
+
+- resolved cookstyle error: libraries/plugin_helpers.rb:39:9 refactor: `ChefCorrectness/ChefApplicationFatal`
+
 ## 5.3.0 (2019-08-29)
 
 - Add code owners file - [@tas50](https://github.com/tas50)
