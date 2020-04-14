@@ -36,7 +36,7 @@ module OhaiCookbook
       if Chef::Config['config_file']
         ::File.dirname(Chef::Config['config_file'])
       else
-        Chef::Application.fatal!("No chef config file defined. Are you running \
+        raise("No chef config file defined. Are you running \
   chef-solo? If so you will need to define a path for the ohai_plugin as the \
   path cannot be determined")
       end
