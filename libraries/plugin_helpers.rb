@@ -63,7 +63,7 @@ module OhaiCookbook
     end
 
     # we need to warn the user that unless the path for this plugin is in Ohai's
-    # plugin path already we're going to have to reload Ohai on every Chef run.
+    # plugin path already we're going to have to reload Ohai on every Chef Infra Client run.
     # Ideally in future versions of Ohai /etc/chef/ohai/plugins is in the path.
     def plugin_path_warning
       Chef::Log.warn("The Ohai plugin_path does not include #{desired_plugin_path}. \
