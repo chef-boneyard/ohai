@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-require_relative '../../../libraries/hint_helpers.rb'
+require_relative '../../../libraries/hint_helpers'
 
 describe OhaiCookbook::HintHelpers do
   let(:helper) do
