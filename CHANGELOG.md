@@ -2,8 +2,9 @@
 
 This file is used to list changes made in each version of the ohai cookbook.
 
-## Unreleased
+## 5.3.1 (2022-01-14)
 
+- Resolve bad notification syntax in the ohai_hint :delete action
 - resolved cookstyle error: libraries/plugin_helpers.rb:39:9 refactor: `ChefCorrectness/ChefApplicationFatal`
 
 ## 5.3.0 (2019-08-29)

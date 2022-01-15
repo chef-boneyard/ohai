@@ -4,7 +4,7 @@ maintainer_email 'cookbooks@chef.io'
 license 'Apache-2.0'
 description 'Provides custom resources for installing Ohai hints and plugins'
 
-version '5.3.0'
+version '5.3.1'
 
 %w(ubuntu debian centos redhat amazon scientific fedora oracle suse opensuse opensuseleap freebsd windows zlinux).each do |os|
   supports os
